@@ -1,4 +1,5 @@
 gulp = require "gulp"
+rs   = require "run-sequence"
 
 clean  = require "gulp-clean"
 coffee = require "gulp-coffee"
@@ -50,9 +51,9 @@ gulp.task "default", [
   "build"
 ]
 
-gulp.task "build", [
-  "clean"
+gulp.task "build", ->
+  rs  "clean", [
   "stylus"
   "jade"
   "coffee"
-]
+  ]
