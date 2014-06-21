@@ -52,8 +52,8 @@ gulp.task "default", [
 ]
 
 gulp.task "build", ->
-  rs  "clean", [
-  "stylus"
-  "jade"
-  "coffee"
+  rs "clean", [
+    "stylus"
+    "jade"
+    "coffee"
   ]
