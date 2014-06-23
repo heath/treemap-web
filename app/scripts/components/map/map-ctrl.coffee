@@ -13,20 +13,17 @@ app.controller "MapCtrl", [
 
     getPins = (e) ->
       bounds = map.getBounds()
-      url = "http://localhost:3000/trees/within?lat1=#{bounds.getNorthEast().lat}\
-            &lon1=#{bounds.getNorthEast().lng}\
-            &lat2=#{bounds.getSouthWest().lat}\
-            &lon2=#{bounds.getSouthWest().lng}"
+      url = "http://localhost:3000/trees/"
       $.get url, setPins, "json"
       return
 
-    setPins = (data) ->
+    setPins = (tree) ->
       # clear current pins
       map.removeLayer markerLayerGroup
       # add new pins
       markerArray = []
-      parks.forEach (park, i) ->
-        markerArray[i] = L.marker([park.pos[1], park.pos[0]]).bindPopup park.Name
+      trees.forEach (tree, i) ->
+        markerArray[i] = L.marker([tree.pos[1], tree.pos[0]]).bindPopup tree.common
       markerLayerGroup = L.layerGroup(markerArray).addTo map
       return
 
